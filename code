@@ -1,0 +1,97 @@
+#this is my frist project in programming i use in this program only cpp prog_language.
+
+
+#include<iostream>
+#include<string>
+using namespace std;
+int number_of_employees=0;
+string names[1000];
+int  ages[1000];
+string salaries[1000];
+string genders[1000];
+void add_new_employee(){
+     string name,gender,salary;
+     int age;
+     cout<<"Enter Name:"<<flush;
+     cin>>name;
+     names[number_of_employees]=name;
+     cout<<"Enter age:"<<flush;
+     cin>>age;
+     ages[number_of_employees]=age;
+     cout<<"Enter salary:"<<flush;
+     cin>>salary;
+     salaries[number_of_employees]=salary;
+     cout<<"Enter gender(m,f):"<<flush;
+     cin>>gender;
+     genders[number_of_employees]=gender;
+     number_of_employees+=1;
+}
+void print_all_employees(){
+     for(int i=0;i<number_of_employees;i++){
+          cout<<"=================================================="<<endl;
+          cout<<"name:"<<names[i]<<endl;
+          cout<<"age:"<<ages[i]<<endl;
+          cout<<"salary:"<<salaries[i]<<endl;
+          cout<<"gender:"<<genders[i]<<endl;
+     }     
+}
+void delete_by_age(){
+     int start ,end;
+     cout<<"please enter start and end as 2 3: "<<flush;
+     cin>>start>>end;
+     for(int i=0;i<number_of_employees;i++){
+          if (ages[i] >= start && ages[i] <= end )
+          {
+               ages[i]--;
+          }
+     }
+}
+void update_salary_whit_name(){
+     string name,salary;
+     bool is_found=false;
+     cout<<"Enter name:"<<flush;
+     cin>>name;
+     cout<<"Enter salary:"<<flush;
+     cin>>salary;
+     for(int i=0;i<number_of_employees;i++){
+          if(names[i]==name){
+               is_found=true;
+               salaries[i]=salary;
+          }
+     }
+     if(! is_found)
+          cout<<"no employee with these name"<<endl;
+}
+int main(){
+     string yes_or_no;
+     int choose;
+     bool again=true;
+     cout<<"           * WELCOME IN EMPLOYEE PROGRAM * "<<endl;
+     while (again)
+     {
+     cout<<"1-Add new employee"<<endl;
+     cout<<"2-print all employees"<<endl;
+     cout<<"3-delete by age"<<endl;
+     cout<<"4-update salary with name"<<endl;
+     cout<<"5-Exit"<<endl;
+     cout<<"enter your choose:"<<flush;
+     cin>>choose;
+     if(choose==1){
+          if(number_of_employees>1000){
+               cout<<"we cannot enter anthour employee"<<endl;
+          }
+          else{
+               add_new_employee();
+          }
+     }else if(choose==2){
+          print_all_employees();
+     }else if(choose==3){
+          delete_by_age();
+     }else if(choose==4){
+          update_salary_whit_name();
+     }else if(choose==5){
+          again=false;
+          cout<<"           * THANK YOU! *";
+     }
+     }
+}
